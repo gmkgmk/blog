@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var q = [1, 2, 3, 4]
+    Array.prototype.find = function (fn, thisArg) {
+      len = this.length;
+
+      for (var i = 0; i < len; i++) {
+        if (fn.call(thisArg, this[i], i, this)) {
+          return this[i]
+        }
+      }
+    }
+
+    console.log(q.find(function (value) {
+      return value > 2
+    }))
+  </script>
+</body>
+
+</html>

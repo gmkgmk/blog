@@ -1,0 +1,14 @@
+{
+  "name": "babel-plugin-transform-gmk-study",
+  "version": "1.0.1",
+  "description": "babel-plugin stydy",
+  "main": "src/index.js",
+  "keywords": [
+    "babel-plugin"
+  ],
+  "peerDependencies": {
+    "@babel/core": "^6.26.3"
+  },
+  "author": "guo.mk",
+  "license": "ISC"
+}

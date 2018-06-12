@@ -1,0 +1,24 @@
+{
+  "name": "with-babel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-gmk-study": "^1.0.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-traverse": "^6.26.0",
+    "babylon": "^6.18.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-types": "^6.26.0"
+  },
+  "scripts": {
+    "compolie": "babel index.js --out-file compolie.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

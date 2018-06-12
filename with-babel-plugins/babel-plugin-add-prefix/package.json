@@ -1,0 +1,15 @@
+{
+  "name": "babel-plugin-add-prefix",
+  "version": "1.0.0",
+  "description": "babel-plugin-add-prefix",
+  "main": "lib/index.js",
+  "keywords": [
+    "babel",
+    "plugin"
+  ],
+  "peerDependencies": {
+    "@babel/core": "^6.26.3"
+  },
+  "author": "guo.mk",
+  "license": "ISC"
+}
