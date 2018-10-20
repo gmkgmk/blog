@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="wrap">
+    </div>
+    <script>
+        const root = document.getElementById("wrap")
+        let index = 0;
+        let loading = 0
+        const urls = [];
+        const imageFunc = id => `https://wheato.github.io/demo/promise-demo/images/pic/${id}.jpg`
+        while (index < 20) {
+            urls.push(imageFunc(index))
+            index++
+        }
+        const promises = urls.map(item => {
+            return (next) => {
+                loadImg(item).then(imgNode => {
+                    append(imgNode)
+                    next()
+                })
+            }
+        })
+
+        dispatch(0)
+        function dispatch(i) {
+            const fn = promises[i]
+            if (!fn) return Promise.resolve()
+            return Promise.resolve(fn(dispatch.bind(null, i + 1)))
+        }
+        function append(imgNode) {
+            console.log("load", imgNode)
+            root.appendChild(imgNode)
+        }
+        function loadImg(url) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                console.log(url)
+                img.src = url;
+                img.onload = function () {
+                    resolve(img)
+                }
+                img.onerror = reject
+            })
+        }
+    </script>
+</body>
+
+</html>

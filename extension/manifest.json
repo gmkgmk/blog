@@ -1,0 +1,29 @@
+{
+    "manifest_version": 2,
+    "name": "Code Checker",
+    "version": "1.0.6",
+    "description": "This extension verifies the code exists somewhere on this page",
+    "icons": {
+        "128": "icons/128-production.png",
+        "16": "icons/16-production.png",
+        "32": "icons/32-production.png",
+        "48": "icons/48-production.png"
+    },
+    "browser_action": {
+        "default_icon": {
+            "128": "icons/128-disabled.png",
+            "16": "icons/16-disabled.png",
+            "32": "icons/32-disabled.png",
+            "48": "icons/48-disabled.png"
+        },
+        "default_popup": "popup.html",
+        "default_title": "Check to see if our code is on this page"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"],
+            "run_at": "document_end"
+        }
+    ]
+}

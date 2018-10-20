@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./test.js"></script>
+    <script>
+        const app = {
+            name: "app",
+            watch: {
+                number: function () {
+                    console.log(2)
+                }
+            },
+            data() {
+                return {
+                    number: 1,
+                    num: 1,
+                };
+            },
+            beforeCreate() {
+                console.log("beforeCreate", this);
+            },
+            created() {
+                console.log("created", this);
+                // this.number = 2
+                // console.log(this.number)
+                // this.number = 3
+
+            },
+            beforeMount() {
+                console.log("beforeMount");
+            },
+            mounted() {
+                console.log("mounted");
+
+            },
+            beforeUpdate() {
+                console.log("beforeUpdate");
+            },
+            updated() {
+                console.log("updated ");
+            },
+            beforeDestroy() {
+                console.log("beforeDestroy");
+            },
+            destroyed() {
+                console.log("destroyed");
+            },
+        }
+        const vue = new Vue({
+            ...app,
+            el: "#app"
+        })
+        console.log(vue)
+    </script>
+    <script>
+     
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "koa-radis",
+  "version": "1.0.0",
+  "description": "koa-redis",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "redis",
+    "koa"
+  ],
+  "author": "guo.mk",
+  "license": "ISC",
+  "devDependencies": {
+    "ioredis": "^4.2.0",
+    "koa": "^2.5.3"
+  },
+  "dependencies": {
+    "koa-router": "^7.4.0"
+  }
+}

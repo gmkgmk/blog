@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <hello-world id="host">  </hello-world>
+    <h1 id="abc">111</h1>
+    <script src="./template.js"></script>
+    <script>
+        console.log(document.getElementById("abc"))
+        document.getElementById("abc").addEventListener('click',function(){
+            console.log(2)
+        })
+        loadComponent('hello.vue')
+    </script>
+</body>
+
+</html>
