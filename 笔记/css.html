@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const xhr = new XMLHttpRequest();
+            const url = "https://jsonplaceholder.typicode.com/todos/1";
+            console.log("xhr: ", xhr.readyState);
+
+            xhr.open("GET", url, false);
+
+            xhr.send();
+            console.log("xhr: ", xhr.readyState);
+
+            xhr.onreadystatechange = e => {
+                console.log(e);
+                console.log("xhr: ", xhr);
+                console.log("xhr: ", xhr.readyState);
+            };
+        </script>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1 id="root"></h1>
+        <script>
+            const observerQueue = new Set();
+            const observe = fn => observerQueue.add(fn);
+            const Handle = {
+                set(target,key,value) {
+                    const result = Reflect.set(target,key,value);
+                    observerQueue.forEach(observe => observe());
+                    return result;
+                }
+            };
+            const observable = obj => new Proxy(obj, Handle);
+
+            const person = observable({
+                name: "张三",
+                age: 20
+            });
+
+            function print() {
+                console.log(`${person.name}, ${person.age}`);
+            }
+            function a() {
+               console.log(222)
+            }
+            observe(print);
+            observe(a);
+            person.name = "李四";
+        </script>
+    </body>
+</html>

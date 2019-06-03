@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const inherit = (sub, sup) => {
+                sub.prototype = Object.create(sup && sup.prototype, {
+                    constructor: { value: sub }
+                });
+                // sub.__proto__ = sup;
+            };
+            class A {
+                constructor() {
+                    this.name = 1;
+                }
+                getName() {
+                    return this.name;
+                }
+            }
+            // const A = function() {
+            //     this.name = "王二";
+            // };
+            // A.prototype.getName = function() {
+            //     return this.name;
+            // };
+            // const B = function() {
+            //     A.call(this);
+            //     this.age = 18;
+            // };
+            // B.prototype = Object.create(A.prototype, {
+            //     constructor: {
+            //         value: B
+            //     }
+            // });
+            class B {
+                constructor(){
+
+                }
+            }
+
+            const c = new B();
+
+            console.log(c instanceof A);
+            console.log(c.name);
+            console.log(c);
+            console.log(c.getName);
+        </script>
+    </body>
+</html>
