@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="ev"></div>
+        <script>
+            const ev = document.getElementById('ev');
+            const event = new CustomEvent('eventName', {
+                detail: {
+                    message: 'Hello World',
+                    time: new Date()
+                },
+                bubbles: true,
+                cancelable: true
+            });
+            ev.addEventListener('eventName', function(e) {
+                console.log(e);
+            });
+            setTimeout(function() {
+                ev.dispatchEvent(event); //给节点分派一个合成事件
+            }, 1000);
+        </script>
+    </body>
+</html>

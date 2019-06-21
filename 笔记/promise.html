@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script src="./promise.js"></script>
+        <script>
+            async function test() {
+                const promises = await new Promise((resolve, reject) => {
+                    console.log(0)
+                    setTimeout(function() {
+                        resolve(1);
+                    }, 1000);
+                })
+                    .then(res => {
+                        console.log('res', res);
+                        return 2;
+                    })
+                    .then(res => {
+                        console.log('res', res);
+                        return 3;
+                    });
+                console.log('promises: ', promises);
+            }
+            test();
+        </script>
+    </body>
+</html>
