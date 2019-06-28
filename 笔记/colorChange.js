@@ -1,4 +1,5 @@
-const changeColor = (color = '') => {
+//  方法一
+ const changeColor = (color = '') => {
   let sColor = color.toLowerCase();
   if (sColor) {
     const len = sColor.length;
@@ -20,4 +21,12 @@ const changeColor = (color = '') => {
 
   }
 };
-console.log(changeColor('#6d2b2b'));
+// 方法二
+// const changeColor = (color = '') => {
+//   color = color.replace('#', '');
+//   let red = parseInt(color.slice(0, 2), 16);
+//   let green = parseInt(color.slice(2, 4), 16);
+//   let blue = parseInt(color.slice(4, 6), 16);
+//   return `rgb(${[red, green, blue].join(',')})`;
+// };
+console.log(changeColor('#03AF67'));

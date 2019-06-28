@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <style>
-      #box {
-        background: #03AF76;
-        width: 500px;
-        height: 500px
-      }
-    </style>
   </head>
   <body>
-    <div id="box"></div>
-    <script src="./colorChange.js"></script>
+    <script>
+      const bingThisOPbj = {
+        a: function(num) {
+          console.log('num: ', num);
+          console.log(this);
+        }
+      };
+      (0,bingThisOPbj.a)(this);
+      bingThisOPbj.a(12)
+    </script>
   </body>
 </html>
