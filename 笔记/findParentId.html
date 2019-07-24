@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 已知数据格式，实现一个函数 fn 找出链条中所有的父级 id -->
+        <script>
+            const data = [
+                {
+                    id: '1',
+                    name: 'test1',
+                    children: [
+                        {
+                            id: '11',
+                            name: 'test11',
+                            children: [
+                                {
+                                    id: '111',
+                                    name: 'test111'
+                                },
+                                {
+                                    id: '112',
+                                    name: 'test112'
+                                }
+                            ]
+                        },
+                        {
+                            id: '12',
+                            name: 'test12',
+                            children: [
+                                {
+                                    id: '121',
+                                    name: 'test121'
+                                },
+                                {
+                                    id: '122',
+                                    name: 'test122'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ];
+            const find = value => {
+                const result = [];
+                const nodeList = {};
+                depthFirst(data[0]);
+                function depthFirst(node, parentId) {
+                    nodeList[node.id] = {
+                        parentId,
+                        node
+                    };
+                    const children = node.children;
+                    const id = node.id;
+                    if (children) {
+                        for (let index = 0; index < children.length; index++) {
+                            depthFirst(children[index], id);
+                        }
+                    }
+                    return nodeList;
+                }
+
+                if (nodeList[value]) {
+                    let node = nodeList[value];
+                    while (node.parentId) {
+                        result.push(node.parentId);
+                        node = nodeList[node.parentId];
+                    }
+                }
+                return result;
+            };
+            console.log('result', find('112'));
+        </script>
+    </body>
+</html>
