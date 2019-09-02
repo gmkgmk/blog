@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>高亮搜索</title>
+    <style>
+      .highLight {
+        color: rgb(0, 136, 255);
+      }
+
+      li {
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <input class="input" type="text" />
+    <section>
+      <ul class="container"></ul>
+    </section>
+    <script>
+      // 实现模糊搜索结果的关键词高亮显示
+      const data = [
+        '上海野生动物园',
+        '上饶野生动物园',
+        '北京巷子',
+        '上海中心',
+        '上海黄埔江',
+        '迪士尼上海',
+        '陆家嘴上海中心'
+      ];
+      const container = document.querySelector('.container');
+      const input = document.querySelector('.input');
+      let isComposed = false;
+      function debounce(fn, time = 300) {
+        let timer = null;
+        return (...arg) => {
+          if (timer) {
+            clearTimeout(timer);
+            timer = null;
+          }
+          timer = setTimeout(() => {
+            fn.apply(fn, arg);
+          }, time);
+        };
+      }
+      function addPrefix(e, str) {
+        return str.replace(e, `<span class="highLight">${e}</span>`);
+      }
+      function render(container, html = '') {
+        container.innerHTML = html;
+      }
+      const search = value => {
+        return data.reduce((prev, el) => {
+          if (el.includes(value)) {
+            prev.push(`<li>${addPrefix(value, el)}</li>`);
+          }
+          return prev;
+        }, []);
+      };
+      function renderSearch() {
+        const cache = new Map();
+        return e => {
+          const name = e.target.value;
+          console.log(cache);
+          if (!name) {
+            container.innerHTML = '';
+            return;
+          }
+          if (cache.get(name)) {
+            container.innerHTML = cache.get(name);
+            return;
+          }
+          const innerHtml = search(name);
+          const html = innerHtml.join('');
+          cache.set(name, html);
+          render(container);
+        };
+      }
+      const memoRender = renderSearch();
+      input.addEventListener('compositionstart', e => {
+        isComposed = true;
+      });
+      input.addEventListener('compositionend', e => {
+        isComposed = false;
+        memoRender(e);
+      });
+      input.addEventListener(
+        'input',
+        debounce(e => {
+          if (isComposed) return;
+          memoRender(e);
+        })
+      );
+    </script>
+  </body>
+</html>

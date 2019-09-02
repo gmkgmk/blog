@@ -1,0 +1,17 @@
+FROM centos
+
+LABEL name="guomk" \
+  email="www.github.com/gmkgmk"
+
+ENV mypath /tmp
+WORKDIR $mypath
+
+RUN yum -y install net-tools
+
+EXPOSE 80
+
+ONBUILD RUN [ "echo", "father building --------------------------" ]
+ONBUILD RUN [ "mkdir", "/father" ]
+CMD ["/bin/bash"]
+
+

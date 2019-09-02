@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Node {
+        constructor(data) {
+          this.data = data;
+          this.nextNode = null;
+        }
+      }
+
+      class Link {
+        constructor(node) {
+          this.headNode = node;
+        }
+        find(key) {
+          let currentNode = this.headNode;
+          while (currentNode.data !== key) {
+            currentNode = currentNode.nextNode;
+          }
+          return currentNode;
+        }
+        findLast() {
+          let currentNode = this.headNode;
+          while (currentNode.nextNode) {
+            currentNode = currentNode.nextNode;
+          }
+          return currentNode;
+        }
+        findPrevNode(key) {
+          let currentNode = this.headNode;
+          while (currentNode.nextNode && currentNode.nextNode.data !== key) {
+            currentNode = currentNode.nextNode;
+          }
+          return currentNode;
+        }
+        insert(key, data) {
+          const currentNode = this.find(key);
+          this.createNode(currentNode, data);
+        }
+        createNode(currentNode, data) {
+          const node = new Node(data);
+          node.nextNode = currentNode.next;
+          currentNode.nextNode = node;
+        }
+        push(data) {
+          const currentNode = this.findLast();
+          this.createNode(currentNode, data);
+        }
+        remove(key) {
+          const currentNode = this.findPrevNode(key);
+          currentNode.nextNode = currentNode.nextNode.nextNode;
+        }
+      }
+
+      const link = new Link(new Node('head'));
+      link.push('add1');
+      link.push('add2');
+      link.insert('add2', 'insert');
+      link.push('add3');
+      link.remove('add2');
+      console.log('link: ', link);
+    </script>
+  </body>
+</html>

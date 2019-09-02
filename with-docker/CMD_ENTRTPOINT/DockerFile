@@ -1,0 +1,9 @@
+FROM centos
+
+# docker run myconsole echo test
+# => ENTRYPOINT echo test
+# ENTRYPOINT ["echo","ENTRYPOINT"]
+
+# docker run myconsolelog echo test
+# =>test
+CMD ["echo","CMD"]

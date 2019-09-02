@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var entry = {
+        a: {
+          b: {
+            c: {
+              dd: 'abcdd'
+            }
+          },
+          d: {
+            xx: 'adxx'
+          },
+          e: 'ae'
+        }
+      };
+
+      /**
+         *  {
+            a: {
+              b: {
+                c: {
+                  dd: 'abcdd'
+                }
+              },
+              d: {
+                xx: 'adxx'
+              },
+              e: 'ae'
+            }
+          };
+
+           to
+
+           {
+            'a.b.c.dd': 'abcdd',
+            'a.d.xx': 'adxx',
+            'a.e': 'ae'
+          }
+         */
+      function transformToPath(obj) {
+        const nodeList = {};
+        findKeyPath(obj);
+        function findKeyPath(path, parentKey = '') {
+          const keys = Object.keys(path);
+          for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            const newKey = parentKey ? `${parentKey}.${key}` : `${key}`;
+
+            if (typeof path[key] === 'object') {
+              findKeyPath(path[keys[i]], newKey);
+            } else {
+              nodeList[newKey] = path[key];
+            }
+          }
+        }
+        return nodeList;
+      }
+
+      /**
+         *
+           {
+            'a.b.c.dd': 'abcdd',
+            'a.d.xx': 'adxx',
+            'a.e': 'ae'
+          }
+           to
+           {
+            a: {
+              b: {
+                c: {
+                  dd: 'abcdd'
+                }
+              },
+              d: {
+                xx: 'adxx'
+              },
+              e: 'ae'
+            }
+          };
+         */
+function transformToObj(enterPath) {
+  const obj = {};
+  const keys = Object.keys(enterPath);
+  for (let i = 0; i < keys.length; i++) {
+    splitPath(keys[i].split('.'), obj, enterPath[keys[i]]);
+  }
+  function splitPath(path, out, value) {
+    const key = path.shift();
+    out[key] = out[key] ? out[key] : {};
+    if (path.length > 0) {
+      splitPath(path, out[key], value);
+    } else {
+      out[key] = value;
+    }
+  }
+  return obj;
+}
+
+      const output = transformToPath(entry);
+      console.log('output: ', output);
+      const output_obj = transformToObj(output);
+      console.log('output_obj: ', output_obj);
+    </script>
+  </body>
+</html>

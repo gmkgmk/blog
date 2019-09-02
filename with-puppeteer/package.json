@@ -1,0 +1,19 @@
+{
+  "name": "with-puppeteer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "puppeteer-cn": "^0.1.8",
+    "puppeteer-core": "^1.19.0"
+  },
+  "devDependencies": {
+    "puppeteer": "^1.19.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

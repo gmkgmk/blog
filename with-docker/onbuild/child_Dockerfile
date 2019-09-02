@@ -1,0 +1,6 @@
+FROM gmk/father
+WORKDIR /
+
+RUN yum -y remove net-tools
+
+CMD ["/bin/bash"]
