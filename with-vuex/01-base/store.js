@@ -30,7 +30,6 @@ const store = new Vuex.Store({
         }, 1000);
       });
     }
-  },
-
+  }
 });
 export default store;

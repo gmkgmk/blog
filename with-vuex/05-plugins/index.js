@@ -18,7 +18,7 @@ class moduleCollection {
   getNamespace = path => {
     let module = this.root;
     return path.reduce((namespace, key) => {
-      module = module.children[key]._rawModule;
+      module = module.children[key];
       return namespace + (module.namespaced ? key + '/' : '');
     }, '');
   };
