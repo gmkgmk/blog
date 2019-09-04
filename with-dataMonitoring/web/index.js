@@ -1,0 +1,4 @@
+function test() {
+  error
+}
+test();

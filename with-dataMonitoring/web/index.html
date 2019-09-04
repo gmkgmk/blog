@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>错误监控测试</title>
+  </head>
+  <body>
+    <script>
+      function report(msg) {
+        let reportUrl = 'http://localhost:8888/report';
+        const paramArray = [];
+        for (let key in msg) {
+          paramArray.push(key + '=' + encodeURIComponent(msg[key]));
+        }
+        reportUrl +=
+          (reportUrl.indexOf('?') > -1 ? '&' : '?') + paramArray.join('&');
+
+        new Image().src = reportUrl;
+      }
+      window.onerror = function(msg, url, row, col, error) {
+        const reportMsg = {
+          msg: msg,
+          url: url,
+          row: row,
+          col: col
+        }; // 错误信息
+        console.log('reportMsg: ', reportMsg);
+
+        report(reportMsg);
+      };
+    </script>
+    <script src="index.min.js" ></script>
+  </body>
+</html>
