@@ -1,3 +1,10 @@
+/**
+ * 对比diff
+ *
+ * @param {*} oldTree
+ * @param {*} newTree
+ */
+
 const virtualDiff = (oldTree, newTree) => {
   const patches = {};
   const index = 0;
@@ -33,7 +40,6 @@ const TEXT = 'TEXT';
 const REMOVE = 'REMOVE';
 const REPLACE = 'REPLACE';
 
-
 // 开始对比
 function TreeWalker(oldNode, newNode, index, patches) {
   const currentPatch = [];
@@ -56,7 +62,7 @@ function TreeWalker(oldNode, newNode, index, patches) {
       });
     }
 
-    diffChildren(oldNode.children, newNode.children, index, patches);
+    diffChildren(oldNode.children, newNode.children, patches);
   } else {
     currentPatch.push({
       type: REPLACE,
@@ -67,8 +73,9 @@ function TreeWalker(oldNode, newNode, index, patches) {
     patches[index] = currentPatch;
   }
 }
+// 对比child
 let Index = 0;
-function diffChildren(oldChildren, newChildren, index, patches) {
+function diffChildren(oldChildren, newChildren, patches) {
   oldChildren.forEach((child, idx) => {
     TreeWalker(child, newChildren[idx], ++Index, patches);
   });
