@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- <form><input onfocus="debugger" autofocus /></form> -->
+        <script>
+            function Animal() {
+                this.color = ['red'];
+            }
+            Animal.prototype.pushColor = function(color) {
+                return this.color.push(color);
+            };
+            function inherits(subClass, superClass) {
+                function Inner() {}
+
+                Inner.prototype = superClass.prototype;
+                subClass.prototype = new Inner();
+                subClass.prototype.constructor = subClass;
+            }
+            function Dog() {
+                Animal.call(this);
+                this.age = 18;
+            }
+            // Dog.prototype = new Animal();
+            // Dog.prototype.constructor = Dog;
+            inherits(Dog, Animal);
+            const wang = new Dog();
+            const zhang = new Dog();
+            console.log('zhang: ', zhang);
+            console.log(wang.pushColor('yellow'));
+            console.log(zhang.pushColor('blue'));
+            console.log(zhang.prototype);
+        </script>
+    </body>
+</html>

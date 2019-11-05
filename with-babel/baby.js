@@ -29,3 +29,4 @@ const result = babel.transform(printTips, {
 });
 
 console.log(result.code)
+
