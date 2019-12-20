@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+        <style>
+            #box {
+                width: 500px;
+                height: 500px;
+                border: 1px solid #ccc;
+                position: relative;
+            }
+        </style>
+    </head>
+    <body>
+        <button id="bold">
+            加粗
+        </button>
+        <button id="undo">
+            后退
+        </button>
+        <button id="redo">
+            前进
+        </button>
+        <button id="insertUnorderedList">
+            无序列表
+        </button>
+        <button id="insertHorizontalRule">
+            水平线
+        </button>
+        <button id="formatBlock">
+            段落
+        </button>
+        <button id="insertImage">
+            图片
+        </button>
+        <button id="transform">
+            旋转
+        </button>
+        <img
+            src="data:image/jpeg;base64,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"
+            alt=""
+        />
+        <div id="box" contenteditable="true"></div>
+        <script>
+            function execCommand(name, args = null) {
+                document.execCommand(name, true, args);
+            }
+            const box = document.querySelector('#box');
+            // 加粗
+            document.querySelector('#bold').addEventListener('click', () => {
+                execCommand('bold');
+            });
+            // 后退
+            document.querySelector('#undo').addEventListener('click', () => {
+                execCommand('undo');
+            });
+            // 前进
+            document.querySelector('#redo').addEventListener('click', () => {
+                execCommand('redo');
+            });
+            // 无序列表
+            document.querySelector('#insertUnorderedList').addEventListener('click', () => {
+                execCommand('insertUnorderedList');
+            });
+            // 水平线
+            document.querySelector('#insertHorizontalRule').addEventListener('click', () => {
+                execCommand('insertHorizontalRule');
+            });
+            // 段落
+            document.querySelector('#formatBlock').addEventListener('click', () => {
+                execCommand('formatBlock', '<p>');
+            });
+            // 图片
+            document.querySelector('#insertImage').addEventListener('click', () => {
+                insertImgLink();
+            });
+            function insertImgLink() {
+                let url = window.prompt('请输入图片地址');
+                if (url) execCommand('insertImage', url);
+            }
+            let overlay = null;
+            let img = null;
+            let imgRect;
+            box.addEventListener('click', event => {
+                if (event.target.tagName === 'IMG') {
+                    img = event.target;
+                    addImageEvent();
+                } else if (overlay) {
+                    img = null;
+                    removeOverLay();
+                }
+            });
+            function addImageEvent() {
+                overlay = document.createElement('div');
+                box.appendChild(overlay);
+                repositionOverlay(overlay);
+            }
+            function repositionOverlay(node) {
+                imgRect = img.getBoundingClientRect();
+                const editorRect = box.getBoundingClientRect();
+                Object.assign(node.style, {
+                    position: 'absolute',
+                    top: `${imgRect.top - editorRect.top + box.scrollTop}px`,
+
+                    left: `${imgRect.left - editorRect.left - 1 + box.scrollLeft}px`,
+
+                    width: `${imgRect.width}px`,
+
+                    height: `${imgRect.height}px`,
+
+                    boxSizing: 'border-box',
+                    border: '1px dashed red'
+                });
+                createBox();
+            }
+            let boxes = [];
+            function createBox() {
+                addBox('nwse-resize');
+                // top left
+
+                addBox('nesw-resize');
+                // top right
+
+                addBox('nwse-resize');
+                // bottom right
+
+                addBox('nesw-resize');
+                // bottom left
+
+                positionBoxes();
+                // 设置四个拖拽框位置
+            }
+            function addBox(cursor) {
+                const box = document.createElement('div');
+
+                Object.assign(box.style, {
+                    position: 'absolute',
+                    height: '12px',
+                    width: '12px',
+                    backgroundColor: 'white',
+                    border: '1px solid #777',
+                    boxSizing: 'border-box',
+                    opacity: '0.80'
+                });
+
+                box.style.cursor = cursor;
+
+                box.addEventListener('mousedown', this.handleMousedown);
+                // 顺便添加事件
+
+                overlay.appendChild(box);
+
+                boxes.push(box);
+            }
+            function handleMousedown() {}
+            function positionBoxes() {
+                let handleXOffset = `-6px`;
+
+                let handleYOffset = `-6px`;
+                [
+                    { left: handleXOffset, top: handleYOffset },
+
+                    { right: handleXOffset, top: handleYOffset },
+
+                    { right: handleXOffset, bottom: handleYOffset },
+
+                    { left: handleXOffset, bottom: handleYOffset }
+                ].forEach((pos, idx) => {
+                    Object.assign(boxes[idx].style, pos);
+                });
+            }
+            function removeOverLay() {
+                box.removeChild(overlay);
+                overlay = null;
+                boxes = [];
+            }
+            // 图片
+            document.querySelector('#transform').addEventListener('click', () => {
+                transform();
+            });
+            function transform() {
+                img.rotate = img.rotate ? img.rotate + 90 : 90;
+                Object.assign(img.style, {
+                    transform: `rotate(${img.rotate}deg`
+                });
+                removeOverLay();
+                addImageEvent()
+            }
+        </script>
+    </body>
+</html>
