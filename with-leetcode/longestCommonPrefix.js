@@ -4,12 +4,14 @@ var longestCommonPrefix = function(strs) {
   let prefix = '';
   if (strs.length === 0) return prefix;
   let shortStr = strs.reduce((p, r) => (p.length > r.length ? r : p));
+  console.log('shortStr: ', shortStr);
   let str = shortStr;
 
   let length = str.length;
   const commonPrefix = str => strs.find(e => !e.startsWith(str));
   while (length) {
     const isCommonPrefix = commonPrefix(str);
+    console.log('isCommonPrefix: ', isCommonPrefix);
     if (!isCommonPrefix) {
       prefix = str;
       str = shortStr.substr(0, str.length + 1);
