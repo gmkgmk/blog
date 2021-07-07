@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>签约宝在线签约合同</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      .iframe-wrapper {
+        width: 100%;
+        height: calc(100vh - 96px);
+        overflow: auto;
+      }
+      .title-wrapper {
+        width: 100%;
+        height: 48px;
+        background: #fafafa;
+        text-align: center;
+        line-height: 48px;
+        box-sizing: border-box;
+        font-size: 14px;
+        font-family: PingFang-SC-Regular, PingFang-SC;
+        font-weight: 400;
+        color: #000000;
+      }
+      .btn-wrapper {
+        width: 100%;
+        background: #ffffff;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+      }
+      .sign-btn {
+        margin: 16px;
+        height: 44px;
+        background: #fc9126;
+        border-radius: 4px;
+        text-align: center;
+        color: #fff;
+        line-height: 44px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title-wrapper" id="title"></div>
+
+    <iframe
+      id="iframe"
+      class="iframe-wrapper"
+      src="#"
+      frameborder="1"
+      scrolling="yes"
+    ></iframe>
+    <script
+      type="text/javascript"
+      src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"
+    ></script>
+    <script>
+      const searchUrl = new URL(window.location).search.slice(1)
+      const params = new URLSearchParams(searchUrl)
+
+      const pdfSrc = params.get('pdfSrc')
+      const mediationPhone = params.get('mediationPhone')
+      const lessorPhone = params.get('lessorPhone')
+      const initiator = params.get('initiator')
+
+      // iframe
+      const iframe = document.querySelector('#iframe')
+      if (pdfSrc) {
+        iframe.src = pdfSrc
+      }
+      let text = ''
+      if (initiator === '1') {
+        text = `如对合同有异议，请联系出租方修改：${lessorPhone}`
+      } else {
+        text = `如对合同有异议，请联系中介方修改：${mediationPhone}`
+      }
+      const title = document.querySelector('#title')
+      title.innerHTML = text
+
+      const btn = document.querySelector('#btn')
+      btn.addEventListener('click', () => {
+        wx.miniProgram.postMessage({ result: 'ok' })
+      })
+    </script>
+  </body>
+</html>

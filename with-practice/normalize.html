@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>字符串仅由小写字母和 [] 组成，且字符串不会包含多余的空格。</p>
+    <p>示例一: 'abc' --> {value: 'abc'}</p>
+    <p>
+      示例二：'[abc[bcd[def]]]' --> {value: 'abc', children: {value: 'bcd',
+      children: {value: 'def'}}}
+    </p>
+    <script>
+      const normalize = (str) => {
+        str = str.replaceAll("]", "").replaceAll(" ", "");
+        const strArr = str.split("[").filter((el) => el);
+        let data = {};
+        strArr.reduce((prev, element, index) => {
+          prev.value = element;
+          if (index !== strArr.length - 1) {
+            return (prev.children = {});
+          }
+          return prev;
+        }, data);
+        return data;
+      };
+      const result = normalize("[abc[bcd[def ]]]");
+      const result1 = normalize("abc");
+
+
+    </script>
+  </body>
+</html>

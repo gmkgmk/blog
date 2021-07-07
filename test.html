@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- anywhere on the page -->
+  <div v-scope="{ count: 3}" @mounted="console.log($el)">
+   <p v-effect="$el.textContent = count"></p>
+    <button @click="count++" >加</button>
+    <button @click="count--">减</button>
+  </div>
+  <script src="https://unpkg.com/petite-vue" init ></script>
+</body>
+</html>

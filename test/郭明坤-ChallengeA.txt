@@ -1,0 +1,16 @@
+const compose =
+  (...functions) =>
+  (arr) =>
+    functions.reduce((prev, item) => item(prev(arr)))
+
+function double(arrIn) {
+  return arrIn.map((item) => item * 2)
+}
+
+function increment(arrIn) {
+  return arrIn.map((item) => item + 1)
+}
+
+function foo(arrIn) {
+  return compose(double, increment)(arrIn)
+}

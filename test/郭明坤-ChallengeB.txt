@@ -1,0 +1,41 @@
+/**
+ * wait time
+ * @param {*} time
+ */
+const delay = (time) => new Promise((resolve) => setTimeout(resolve, time))
+
+const rate = 1.5
+
+/**
+ *
+ * @param {*} queryFn
+ * @param {*} callback
+ */
+const simplePoller = (queryFn, callback) => {
+  return new Promise((resolve, reject) => {
+    const poll = async (time) => {
+      // wait time
+      await delay(time)
+
+      const task = Promise.resolve(queryFn())
+
+      task.then(
+        (result) => {
+          console.log('result: ', result)
+          // if true
+          if (result) {
+            const result = callback?.()
+            resolve(result)
+          } else {
+            poll(time * rate)
+          }
+        },
+        (err) => {
+          reject(err)
+        }
+      )
+    }
+
+    poll(1000)
+  })
+}
