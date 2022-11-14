@@ -7,7 +7,7 @@
     "babel-loader": "^7.1.5",
     "vue": "^2.6.11",
     "vue-loader": "^15.9.1",
-    "webpack-cli": "^3.3.11",
+    "webpack-cli": "^3.3.12",
     "webpack": "^4.42.1"
   },
   "devDependencies": {
