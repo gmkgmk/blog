@@ -6,8 +6,8 @@
   "dependencies": {
     "koa": "^2.8.1",
     "koa-static": "^5.0.0",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   },
   "devDependencies": {
     "kcors": "^2.2.2",
